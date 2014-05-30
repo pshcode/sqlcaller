@@ -4,21 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.psh4j</groupId>
-    <artifactId>sqlrunner</artifactId>
+    <artifactId>sqlcaller</artifactId>
     <version>1.0.0</version>
 
+    <properties>
+        <jdk-version>1.6</jdk-version>
+        <source-encoding>utf-8</source-encoding>
+    </properties>
+
     <dependencies>
-        <dependency>
-            <groupId>commons-dbcp</groupId>
-            <artifactId>commons-dbcp</artifactId>
-            <version>1.4</version>
-        </dependency>
         <dependency>
             <groupId>commons-dbutils</groupId>
             <artifactId>commons-dbutils</artifactId>
             <version>1.5</version>
         </dependency>
-
         <!-- oracle 11g driver -->
         <dependency>
             <groupId>com.oracle</groupId>
@@ -60,12 +59,22 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${jdk-version}</source>
+                    <target>${jdk-version}</target>
+                    <encoding>${source-encoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.psh4j.sqlrunner.SqlRunner</mainClass>
+                            <mainClass>org.psh4j.sqlcaller.SqlCaller</mainClass>
                             <addClasspath>true</addClasspath>
                         </manifest>
                     </archive>
